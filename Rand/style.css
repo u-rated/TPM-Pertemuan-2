@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body{
+    font-family: 'Inter', sans-serif;
+}
+
+.container{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#box{
+    width: 200px;
+    height: 300px;
+    background-color: red;
+    transform: translate();
+    /* animation: rotate 2s ease infinite forwards; */
+}
+
+
+@keyframes rotate{
+    /* Menggunakan (%) Bisa bikin banyak frame dibandingkan menggunakan from dan to */
+    /* from{
+    
+    }
+    
+    to{
+    
+    } */
+    
+    0%{
+        transform: rotate(0);
+    }
+
+    100%{
+        transform: rotate(180deg);
+    }
+}
+
+@keyframes skewX{
+    0%{
+        transform: skew(0,0);
+    }
+
+    100%{
+        transform: skew(45,45);
+    }
+
+}
+
+.grid{
+    height: 300px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 8px;
+}
+
+.grid-item{
+    background-color: black;
+    position: relative;
+    overflow: hidden;
+}
+
+.grid-item::before{
+    /* Harus pakai content biar before kebaca / sudoelement (Tulisan, emoji, dll isinya) nya muncul */
+    content: '';
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background-color: blue;
+    /* Transisi element  */
+    /* transition : durasi atribut nama_transisi */
+    transition: 1s ease-in-out width, 1s ease-in-out height;
+}
+
+.grid-item::before{
+    width: 100px;
+    height: 100px;
+}
+
+
+
+/* Hover adalah ketika kursor mendekati suatu item  */
+.grid-item:hover{
+    background-color: cyan;
+}
+
+/* Hover adalah ketika kursor klik suatu item  */
+.grid-item:active{
+    background-color: purple;
+}
+
+/* .grid-item:focus{
+
+} */
+
+input[type="text"]{
+    margin: 100px 0;
+}
+
+/* Focus adalah ketika kursor stay di suatu item */
+input[type="text"]:focus {
+    background-color: red;
+}
+.grid:nth-child(1){
+    /* Mulai dari kolum 1 dan akan berhenti di kolom sebelum 3 */
+    /* grid-column-start: 1;
+    grid-column-end: 3; */
+
+    /* Kalau menggunakan span akan sampai angka yang telah ditentukan  */
+    column-span: span 3;
+}
+
+/* #box{} */
+/* width: clamp(ukuran_terkeci, (ini apa), ukuran terbesar)*/
+
+/* media queries untuk web compitable di semua device */
+/* 480px ini di hp ukuran 480px kebawah  */
+@media only screen and (max-width: 480px){
+    .grid{
+        /* fr = fraction unit u/ membagi space tersedia di dalam grid*/
+        /* grid-template-columns bisa juga digunakan repeat(1fr ,3)*/
+        /* grid-template-columns: repeat (1fr, 3)*/
+        /* grid-template-columns: 1fr 1fr 1fr*/
+        grid-template-columns: 1fr 1fr;
+    }
+}
